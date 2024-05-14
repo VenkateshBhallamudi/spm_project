@@ -90,8 +90,6 @@ class App(tk.Tk):
         tk.Button(self.outputFrame, text='Generate Report', command=self.generate_report).grid(row=1, column=2, sticky='nwe', **opts)
         tk.Button(self.outputFrame, text='Output CSV', command=self.write_csv).grid(row=2, column=0, sticky='nwe', **opts)
         tk.Button(self.outputFrame, text='Save Plots', command=self.save_plots).grid(row=2, column=1, sticky='nwe', **opts)
-        
-        #tk.Button(self.outputFrame, text='Plot Energy', command=self.plot_energy).grid(row=1, column=2, sticky='nwe', **opts)
 
         #Plot Config Frame
         self.plotConfigFrame = tk.LabelFrame(second_frame, text="Plot Config")
