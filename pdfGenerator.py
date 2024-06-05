@@ -716,6 +716,7 @@ def construct_signal_entry(itemTuple, itemRecords, cum_dist_vals, date_time_vals
             itemRecord = ir
     
     signal_entry = ''
+    print(itemRecord)
     if(itemRecord is not None):
         if(len(itemRecord.signalRecords) > 0):
             diff_list = [cum_dist_value - itemRecord.km_chainage*1000 for cum_dist_value in cum_dist_vals]
@@ -730,7 +731,10 @@ def construct_signal_entry(itemTuple, itemRecords, cum_dist_vals, date_time_vals
             
             signal_entry = f'{signal_str} ({item_dist_from_zero_str}, {item_speed}, {item_date_time})'
     
-    return signal_entry, round((cum_dist_vals[index] - zeroDist),2), speed_vals[index]
+    if(signal_entry != ''):
+        return signal_entry, round((cum_dist_vals[index] - zeroDist),2), speed_vals[index]
+    else:
+        return signal_entry, 0, 0
 
 def generateStationToStationReport(itemRecords=[], date_time_vals=[], cum_dist_vals=[], speed_vals=[]):
     headingStyle = pd.PdfStyle(font='helvetica', fontStyle='B', fontSize=12, align='L',textColor=(0,0,0), fillColor=(200,220,255), drawColor=(0,80,180),border=False,height=6)
@@ -749,9 +753,10 @@ def generateStationToStationReport(itemRecords=[], date_time_vals=[], cum_dist_v
 
     ssPage.add_pdfTableRecord(ssHeading)
     sNo = 1
-    prevStation = 'START'
+    prevStation = 'START (S)'
     prevIndex = 0
     prevDistance = 0
+    displayIndex = 0
 
     x_vals = []
     y_vals_avg = []
@@ -766,12 +771,18 @@ def generateStationToStationReport(itemRecords=[], date_time_vals=[], cum_dist_v
             index = np.argmin(np.abs(diff_list))
             
             distance = round(km_chainage - prevDistance, 2)
-            ssRecordData = create_ss_table_record(sNo, prevStation, station,  prevIndex, index, distance, date_time_vals, cum_dist_vals, speed_vals)
+            ssRecordData = create_ss_table_record(sNo, prevStation, station,  prevIndex, index, distance, date_time_vals, cum_dist_vals, speed_vals, displayIndex)
             ssRecord = pd.PdfTableRecord(ssRecordData, ssRecordStyle)
             
             ssPage.add_pdfTableRecord(ssRecord)
-            
-            x_vals.append(f'{ssRecordData[1]}-{ssRecordData[2]}')
+            displayStr = ''
+            if displayIndex == 0:
+                displayStr = f'S-{displayIndex+1}'
+            else:
+                displayStr = f'{displayIndex}-{displayIndex+1}'
+
+            x_vals.append(displayStr)
+
             y_vals_avg.append(float(ssRecordData[8]))
             y_vals_dyn.append(float(ssRecordData[9]))
 
@@ -781,12 +792,20 @@ def generateStationToStationReport(itemRecords=[], date_time_vals=[], cum_dist_v
             prevIndex = index
             prevDistance = km_chainage
             sNo += 1
+            displayIndex += 1
             
     distance = round(cum_dist_vals[-1]/1000 - prevDistance, 2)
     
-    ssRecordData = create_ss_table_record(sNo, prevStation, 'END', prevIndex, len(cum_dist_vals) - 1, distance, date_time_vals, cum_dist_vals, speed_vals)
+    ssRecordData = create_ss_table_record(sNo, prevStation, 'END (E)', prevIndex, len(cum_dist_vals) - 1, distance, date_time_vals, cum_dist_vals, speed_vals, displayIndex)
     ssPage.add_pdfTableRecord(pd.PdfTableRecord(ssRecordData, ssRecordStyle))
-    x_vals.append(f'{ssRecordData[1]}-{ssRecordData[2]}')
+
+    displayStr = ''
+    if displayIndex == 0:
+        displayStr = f'S-E'
+    else:
+        displayStr = f'{displayIndex}-E'
+
+    x_vals.append(displayStr)
     y_vals_avg.append(float(ssRecordData[8]))
     y_vals_dyn.append(float(ssRecordData[9]))
     
@@ -811,7 +830,7 @@ def generateStationToStationReport(itemRecords=[], date_time_vals=[], cum_dist_v
     ssPage.pageImage = img
     return ssPage
     
-def create_ss_table_record(sNo, prevStation, presentStation, prevIndex, presentIndex, distance, date_time_vals, cum_dist_vals, speed_vals):
+def create_ss_table_record(sNo, prevStation, presentStation, prevIndex, presentIndex, distance, date_time_vals, cum_dist_vals, speed_vals, displayIndex):
     #'S.No','From Station', 'To Station','Distance', 'Total Time', 'Running Time', 'Idle Time', 'Idle Percent', 'Average Speed', 'Dynamic Speed'
     _, time_duration = sa.time_duration_between(prevIndex, presentIndex, date_time_vals)
     _, running_time_duration = sa.running_time_between_duration(prevIndex, presentIndex, date_time_vals, speed_vals)
@@ -820,7 +839,8 @@ def create_ss_table_record(sNo, prevStation, presentStation, prevIndex, presentI
     _, average_speed = sa.average_speed_between(prevIndex, presentIndex, date_time_vals, cum_dist_vals)
     _, dynamic_speed = sa.dynamic_speed_between(prevIndex, presentIndex, date_time_vals, cum_dist_vals, speed_vals)
 
-    ssRecordData = [str(sNo), prevStation, presentStation, str(distance), time_duration, running_time_duration, idle_time_duration, idle_percent, average_speed, dynamic_speed]
+    prevDisplayStr = 'S' if displayIndex == 0 else str(displayIndex)
+    ssRecordData = [str(sNo), f'{prevStation} ({prevDisplayStr})', f'{presentStation} ({displayIndex+1})', str(distance), time_duration, running_time_duration, idle_time_duration, idle_percent, average_speed, dynamic_speed]
     
     return ssRecordData
 

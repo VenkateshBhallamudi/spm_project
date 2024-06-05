@@ -65,12 +65,20 @@ class SpmInputFrame(tk.LabelFrame):
         tk.Entry(self, textvariable=self.spmAnalysisTo).grid(row=i, column=j, columnspan=3, sticky='nsew', **opts)
 
     def initValues_test(self):
-        self.spmFileLocVar.set('D:/spmTest/Trial/17660.txt')
-        self.spmMapLocVar.set('D:/spmTest/Trial/Mast Signal Chainage New.csv')
-        self.spmGradientLocVar.set('D:/spmTest/Trial/Gradient.csv')
-        self.spmSrLocVar.set('D:/spmTest/Trial/SR Map File.csv')
-        self.spmAnalysisFrom.set('15-04-24 08:54:14')
-        self.spmAnalysisTo.set('')
+        self.spmFileLocVar.set('C:/Users/VENKATESH/OneDrive/Desktop/Action Plan/Trial 03.06.2024/17660 03.06.2024.txt')
+        self.spmMapLocVar.set('C:/Users/VENKATESH/OneDrive/Desktop/Action Plan/Trial 03.06.2024/Mast Signal Chainage KZJ-SC_Signals_Final MMTS_Updated.csv')
+        self.spmGradientLocVar.set('C:/Users/VENKATESH/OneDrive/Desktop/Action Plan/Trial 03.06.2024/Gradient_KZJ-SC.csv')
+        self.spmSrLocVar.set('C:/Users/VENKATESH/OneDrive/Desktop/Action Plan/Trial 03.06.2024/SR Map File KZJ-SC.csv')
+        self.spmAnalysisFrom.set('')
+        self.spmAnalysisTo.set('03-06-24 12:50:04')
+    
+    def initValues_testL(self):
+        self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/17660 03.06.2024.txt')
+        self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/Mast Signal Chainage KZJ-SC_Signals_Final MMTS_Updated.csv')
+        self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/Gradient_KZJ-SC.csv')
+        self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/SR Map File KZJ-SC.csv')
+        self.spmAnalysisFrom.set('')
+        self.spmAnalysisTo.set('03-06-24 12:50:04')
     
     def getSpmInputData(self):
         return self.spmInputData
