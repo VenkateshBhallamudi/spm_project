@@ -35,7 +35,7 @@ class SpmInputFrame(tk.LabelFrame):
         #Construct SPM Type Buttons
         
         self.spmTypeVar.set('Laxven')
-        self.initValues_test()
+        self.initValues_testL()
         
         self.spmTypeButtons = [self.create_radio(c) for c in SpmInputData.SPM_TYPES.keys()]
         i,j=(1,0)
