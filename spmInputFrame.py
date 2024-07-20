@@ -73,10 +73,10 @@ class SpmInputFrame(tk.LabelFrame):
         self.spmAnalysisTo.set('03-06-24 12:50:04')
     
     def initValues_testL(self):
-        self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/17660 03.06.2024.txt')
-        self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/Mast Signal Chainage KZJ-SC_Signals_Final MMTS_Updated.csv')
-        self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/Gradient_KZJ-SC.csv')
-        self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Action Plan/Trial 03.06.2024/SR Map File KZJ-SC.csv')
+        self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Coding/Trial 03.06.2024/17660 03.06.2024.txt')
+        self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Coding/Trial 03.06.2024/Mast Signal Chainage KZJ-SC_Signals_Final MMTS_Updated.csv')
+        self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Coding/Trial 03.06.2024/Gradient_KZJ-SC.csv')
+        self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Coding/Trial 03.06.2024/SR Map File KZJ-SC.csv')
         self.spmAnalysisFrom.set('')
         self.spmAnalysisTo.set('03-06-24 12:50:04')
     
