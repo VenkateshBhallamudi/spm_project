@@ -1059,7 +1059,7 @@ class App(tk.Tk):
                             success = False
                         else:
                             mb.showinfo('Information', f'{gradient_records_len} Gradient Records found in given SPM duration of distance {cum_distance*1000} m')
-                            gp.output_gradient_csv('D:/Pydir/Map Files/GradientFiltered.csv',self.gradientRecords)
+                            #gp.output_gradient_csv('D:/Pydir/Map Files/GradientFiltered.csv',self.gradientRecords)
                             success = True
                     else:
                         mb.showwarning('Warning', 'To process gradients, Gradient File must be specified.')
