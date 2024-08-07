@@ -35,7 +35,7 @@ class SpmInputFrame(tk.LabelFrame):
         #Construct SPM Type Buttons
         
         self.spmTypeVar.set('Laxven')
-        self.initValues_testL()
+        #self.initValues_test_prlivkb()
         
         self.spmTypeButtons = [self.create_radio(c) for c in SpmInputData.SPM_TYPES.keys()]
         i,j=(1,0)
@@ -80,6 +80,14 @@ class SpmInputFrame(tk.LabelFrame):
         self.spmAnalysisFrom.set('')
         self.spmAnalysisTo.set('03-06-24 12:50:04')
     
+    def initValues_test_prlivkb(self):
+        self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial PRLI-VKB/30560 17648 07.07.24 (2).txt')
+        self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial PRLI-VKB/PRLI-VKB Mapping.csv')
+        self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial PRLI-VKB/PRLI-VKB GRADIENT.csv')
+        self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial PRLI-VKB/SR VKB-PRLI.csv')
+        self.spmAnalysisFrom.set('07-07-24 10:42:02')
+        self.spmAnalysisTo.set('07-07-24 16:28:49')
+
     def getSpmInputData(self):
         return self.spmInputData
     
