@@ -111,6 +111,7 @@ def gradientParser(fileName, startKm, cum_distance, direction):
     gradient_records = []
     return_gradient_records = []
 
+    #print(f'Min Km {min_km} Max km {max_km} StartKm {startKm}')
     if(startKm >= min_km and startKm <= max_km):
         #print(len(from_list_csv))
         gradient_records = filter_gradients(from_list_csv, to_list_csv, direction_list_csv, gradient_list_csv, startKm, direction)
