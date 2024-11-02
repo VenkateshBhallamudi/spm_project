@@ -1,2 +1,7 @@
 #Ignore all files in pycache folder
 __pycache__/
+AnalysisByDump/
+build/
+CliDump/
+LpDump/
+spmApp.spec

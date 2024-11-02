@@ -35,7 +35,7 @@ class SpmInputFrame(tk.LabelFrame):
         #Construct SPM Type Buttons
         
         self.spmTypeVar.set('Laxven')
-        #self.initValues_test_prlivkb()
+        self.initValues_test_wdsc()
         
         self.spmTypeButtons = [self.create_radio(c) for c in SpmInputData.SPM_TYPES.keys()]
         i,j=(1,0)
@@ -87,6 +87,14 @@ class SpmInputFrame(tk.LabelFrame):
         self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial PRLI-VKB/SR VKB-PRLI.csv')
         self.spmAnalysisFrom.set('07-07-24 10:42:02')
         self.spmAnalysisTo.set('07-07-24 16:28:49')
+
+    def initValues_test_wdsc(self):
+        self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial WD-SNF/22732 SPM File.txt')
+        self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial WD-SNF/DN WD-SC Mapping.csv')
+        self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial WD-SNF/DN WD-SC Gradient.csv')
+        self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial WD-SNF/DN WD-SC SR File.csv')
+        self.spmAnalysisFrom.set('05-10-24 01:05:38')
+        self.spmAnalysisTo.set('05-10-24 03:37:46')
 
     def getSpmInputData(self):
         return self.spmInputData

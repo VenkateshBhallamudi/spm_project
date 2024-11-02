@@ -246,19 +246,29 @@ def chainageParser(fileName):
 
 def plot_sr_records(axis, plotSrRecords=[], multiplier=1000, trainLength=0):
     srColor = 'tab:red'
+    bubbleColor = 'ro'
     for serialNo, srRecord in plotSrRecords:
         to_chainage = srRecord.to_sr_chainage*multiplier + trainLength
         x_vals = [srRecord.from_sr_chainage*multiplier, to_chainage]
         y_vals = [srRecord.sr_speed, srRecord.sr_speed]
+        bubble_sizes = [400, 400]
+
         if(srRecord.sr_type == 'TSR'):
-            srColor = 'tab:red'
+            srColor = 'red'
+            bubbleColor = 'red'
         elif(srRecord.sr_type == 'PSR'):
-            srColor = 'tab:orange'
+            srColor = 'darkorange'
+            bubbleColor = 'darkorange'
         else:
-            srColor = 'tab:pink' 
+            srColor = 'brown'
+            bubbleColor = 'brown'
 
         axis.plot(x_vals, y_vals, color=srColor)
-        axis.plot(x_vals, y_vals, 'ro')
+        axis.plot(x_vals, y_vals, bubbleColor)
+        axis.plot(x_vals[0], y_vals[0], 'o', color=bubbleColor, alpha=1)
+        axis.plot(x_vals[1], y_vals[1], 'o', color=bubbleColor, alpha=1)
+        #axis.scatter()
+        #axis.scatter(x_vals, y_vals, s=bubble_sizes, color=bubbleColor, alpha=0.5)
         axis.text(srRecord.from_sr_chainage*multiplier, srRecord.sr_speed, serialNo)
 
 def plot_item_records(axis, plotItemRecords=[], multiplier=1000, y_location=0):

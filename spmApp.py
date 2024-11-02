@@ -87,54 +87,66 @@ class App(tk.Tk):
         tk.Button(self.outputFrame, text='Plot Stoppage', command=self.plot_current_stoppage).grid(row=0, column=2, sticky='nwe', **opts)
         tk.Button(self.outputFrame, text='Plot Current & Voltage', command=self.plot_current_voltage).grid(row=1, column=0, sticky='nwe', **opts)
         tk.Button(self.outputFrame, text='Plot Energy', command=self.plot_energy).grid(row=1, column=1, sticky='nwe', **opts)
-        tk.Button(self.outputFrame, text='Generate Report', command=self.generate_report).grid(row=1, column=2, sticky='nwe', **opts)
-        tk.Button(self.outputFrame, text='Output CSV', command=self.write_csv).grid(row=2, column=0, sticky='nwe', **opts)
-        tk.Button(self.outputFrame, text='Save Plots', command=self.save_plots).grid(row=2, column=1, sticky='nwe', **opts)
+        tk.Button(self.outputFrame, text='Output CSV', command=self.write_csv).grid(row=1, column=2, sticky='nwe', **opts)
+        tk.Button(self.outputFrame, text='Save Plots', command=self.save_plots).grid(row=2, column=0, sticky='nwe', **opts)
+        tk.Button(self.outputFrame, text='Detailed Report', command=self.generate_report).grid(row=2, column=1, sticky='nwe', **opts)
+        tk.Button(self.outputFrame, text='Brief Report', command=self.generate_quick_report).grid(row=2, column=2, sticky='nwe', **opts)
 
         #Plot Config Frame
         self.plotConfigFrame = tk.LabelFrame(second_frame, text="Plot Config")
         
         self.showGrid = tk.IntVar()
+        self.showGrid.set(1)
         self.showGrid_btn = tk.Checkbutton(self.plotConfigFrame, text="Show Grid", variable=self.showGrid)
         self.showGrid_btn.grid(row=0, column=0, sticky='nw', **opts)
         
         self.showTicks = tk.IntVar()
+        self.showTicks.set(1)
         self.showTicks_btn = tk.Checkbutton(self.plotConfigFrame, text="Show Station Sections", variable=self.showTicks)
         self.showTicks_btn.grid(row=0, column=1, sticky='nw', **opts)
 
         self.showMps = tk.IntVar()
+        self.showMps.set(1)
         self.showMps_btn = tk.Checkbutton(self.plotConfigFrame, text="Show MPS/From/To", variable=self.showMps)
         self.showMps_btn.grid(row=1, column=0, sticky='nw', **opts)
 
         self.showIntersect = tk.IntVar()
+        self.showIntersect.set(1)
         self.showIntersect_btn = tk.Checkbutton(self.plotConfigFrame, text="Show Intersections/Zeroes", variable=self.showIntersect)
         self.showIntersect_btn.grid(row=1, column=1, sticky='nw', **opts)
 
         self.showSpmAnnot = tk.IntVar()
+        self.showSpmAnnot.set(1)
         self.showSpmAnnot_btn = tk.Checkbutton(self.plotConfigFrame, text="Show SPM Annotations", variable=self.showSpmAnnot)
         self.showSpmAnnot_btn.grid(row=2, column=0, sticky='nw', **opts)
 
         self.showItem = tk.IntVar()
+        self.showItem.set(1)
         self.showItem_btn = tk.Checkbutton(self.plotConfigFrame, text="Show Signals/NS", variable=self.showItem)
         self.showItem_btn.grid(row=2, column=1, sticky='nw', **opts)
 
         self.showSr = tk.IntVar()
+        self.showSr.set(1)
         self.showSr_btn = tk.Checkbutton(self.plotConfigFrame, text="Show SRs", variable=self.showSr)
         self.showSr_btn.grid(row=3, column=0, sticky='nw', **opts)
         
         self.showGrad = tk.IntVar()
+        self.showGrad.set(1)
         self.showGrad_btn = tk.Checkbutton(self.plotConfigFrame, text="Show Gradient", variable=self.showGrad)
         self.showGrad_btn.grid(row=3, column=1, sticky='nw', **opts)
 
         self.showGradAnnot = tk.IntVar()
+        self.showGradAnnot.set(1)
         self.showGradAnnot_btn = tk.Checkbutton(self.plotConfigFrame, text="Show Grad Annotations", variable=self.showGradAnnot)
         self.showGradAnnot_btn.grid(row=4, column=0, sticky='nw', **opts)
 
         self.showBft = tk.IntVar()
+        self.showBft.set(1)
         self.showBft_btn = tk.Checkbutton(self.plotConfigFrame, text="Show BFT", variable=self.showBft)
         self.showBft_btn.grid(row=4, column=1, sticky='nw', **opts)
 
         self.showBpt = tk.IntVar()
+        self.showBpt.set(1)
         self.showBpt_btn = tk.Checkbutton(self.plotConfigFrame, text="Show BPT", variable=self.showBpt)
         self.showBpt_btn.grid(row=5, column=0, sticky='nw', **opts)
 
@@ -237,7 +249,7 @@ class App(tk.Tk):
         fig, ax1 = plt.subplots()
         color = 'tab:blue'
         ax1.set_title('Speed vs Distance Plot', weight='bold')
-        ax1.set_xlabel('Distance (km)', color='tab:purple', weight='bold')
+        ax1.set_xlabel('Distance (m)', color='tab:purple', weight='bold')
         ax1.set_ylabel('Speed (kmph)', color=color, weight='bold')
 
         isXticks = False
@@ -642,6 +654,7 @@ class App(tk.Tk):
                 index = np.argmin(np.abs(self.cum_dist_vals - event.xdata))
                 
                 nearest_x = self.cum_dist_vals[index]
+                nearest_date_time = self.date_time_vals[index].strftime('%d-%m-%y %H:%M:%S')
                 nearest_current = self.current_vals[index]
                 nearest_voltage = self.voltage_vals[index]
 
@@ -657,7 +670,7 @@ class App(tk.Tk):
                 for collection in self.voltageaxis.collections:
                     collection.remove()
 
-                self.voltageaxis.annotate(f'({round(nearest_x,2)} m, {nearest_current} A, {nearest_voltage} kV)',
+                self.voltageaxis.annotate(f'({round(nearest_x,2)} m, {nearest_current} A, {nearest_voltage} kV),\n({nearest_date_time})',
                             xy=(event.xdata, event.ydata),
                             xytext=(-20, 20),
                             textcoords='offset points',
@@ -1419,6 +1432,18 @@ class App(tk.Tk):
         #except BaseException as error:
         #    mb.showerror('Error', f'An exception occurred: {error}')
 
+    def generate_quick_report(self):
+        #try:
+            filetypes = (('PDF Files', '*.pdf'), ('All Files', '*'))
+            filename = fd.asksaveasfilename(title='Generate PDF Report', defaultextension=".pdf", initialdir=os.getcwd(), filetypes=filetypes)
+            if filename:
+                if(self.outputQuickReport(filename)):
+                    mb.showinfo('Information', f'PDF Report Generated Successfully.\nFile output: {filename}')
+            else:
+                mb.showinfo('Information', 'Operation cancelled!!!')
+        #except BaseException as error:
+        #    mb.showerror('Error', f'An exception occurred: {error}')
+
     def outputReport(self, filename):
         spmInfoData = self.spmInfoFrame.getSpmInfoData()
 
@@ -1426,7 +1451,7 @@ class App(tk.Tk):
             mb.showwarning('Warning', 'LP PF No cannot be empty for generating report.\nNot generating report.')
             return False
         else:
-            headerTitle = 'SPM Analysis Report'
+            headerTitle = 'SPM Detailed Analysis Report'
             if (self.spmInfoFrame.getSpmInfoData().train != None and self.spmInfoFrame.getSpmInfoData().train.strip() != ''):
                 headerTitle = headerTitle + ' of ' + self.spmInfoFrame.getSpmInfoData().train
                 if(self.spmInfoFrame.getSpmInfoData().tripDate != None and self.spmInfoFrame.getSpmInfoData().tripDate.strip() != ''):
@@ -1488,6 +1513,103 @@ class App(tk.Tk):
             customPdf.image(speed_distance_report_plot, x=10, y=10, h=190, w=270)
             customPdf.output(filename)
             print('User report generated in ' + filename)
+            
+            #Cleanup the directory
+            os.remove(speed_time_report_plot)
+            os.remove(speed_distance_report_plot)
+            if len(os.listdir(saveDir)) == 0: 
+                os.rmdir(saveDir)
+            
+            if(self.archive_var.get() == True):
+                lpArchivePath = os.path.join(os.getcwd(), 'LpDump')
+                if not os.path.exists(lpArchivePath):
+                    os.mkdir(lpArchivePath)
+                lpPath = os.path.join(lpArchivePath, spmInfoData.lpPfNo)
+                if not os.path.exists(lpPath):
+                    os.mkdir(lpPath)
+                #archiveReportPath = os.path.join(lpPath, spmInfoData.tripDate.strip() + '#' + spmInfoData.train.strip() + '#' + datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S'))
+                lpArchiveReportPath = os.path.join(lpPath, spmInfoData.tripDate.strip() + '#' + spmInfoData.train.strip() + '#' + datetime.datetime.now().strftime('%d.%m.%Y') + '.pdf')
+                customPdf.output(lpArchiveReportPath)
+                print('LP Archive Report generated in ' + lpArchiveReportPath)
+
+                cliArchivePath = os.path.join(os.getcwd(), 'CliDump')
+                if not os.path.exists(cliArchivePath):
+                    os.mkdir(cliArchivePath)
+                cliPath = os.path.join(cliArchivePath, spmInfoData.cliPfNo)
+                if not os.path.exists(cliPath):
+                    os.mkdir(cliPath)
+                #archiveReportPath = os.path.join(lpPath, spmInfoData.tripDate.strip() + '#' + spmInfoData.train.strip() + '#' + datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S'))
+                cliArchiveReportPath = os.path.join(cliPath, spmInfoData.tripDate.strip() + '#' + spmInfoData.train.strip() + '#' + datetime.datetime.now().strftime('%d.%m.%Y') + '.pdf')
+                customPdf.output(cliArchiveReportPath)
+                print('CLI Archive Report generated in ' + cliArchiveReportPath)
+
+                anaByArchivePath = os.path.join(os.getcwd(), 'AnalysisByDump')
+                if not os.path.exists(anaByArchivePath):
+                    os.mkdir(anaByArchivePath)
+                anaByPath = os.path.join(anaByArchivePath, spmInfoData.analysisBy)
+                if not os.path.exists(anaByPath):
+                    os.mkdir(anaByPath)
+                #archiveReportPath = os.path.join(lpPath, spmInfoData.tripDate.strip() + '#' + spmInfoData.train.strip() + '#' + datetime.datetime.now().strftime('%d.%m.%Y %H:%M:%S'))
+                anaByArchiveReportPath = os.path.join(anaByPath, spmInfoData.tripDate.strip() + '#' + spmInfoData.train.strip() + '#' + datetime.datetime.now().strftime('%d.%m.%Y') + '.pdf')
+                customPdf.output(anaByArchiveReportPath)
+                print('Analysis By Archive Report generated in ' + anaByArchiveReportPath)
+            return True
+
+    def outputQuickReport(self, filename):
+        spmInfoData = self.spmInfoFrame.getSpmInfoData()
+
+        if(spmInfoData.lpPfNo == None or spmInfoData.lpPfNo.strip() == ''):
+            mb.showwarning('Warning', 'LP PF No cannot be empty for generating report.\nNot generating report.')
+            return False
+        else:
+            headerTitle = 'SPM Brief Analysis Report'
+            if (self.spmInfoFrame.getSpmInfoData().train != None and self.spmInfoFrame.getSpmInfoData().train.strip() != ''):
+                headerTitle = headerTitle + ' of ' + self.spmInfoFrame.getSpmInfoData().train
+                if(self.spmInfoFrame.getSpmInfoData().tripDate != None and self.spmInfoFrame.getSpmInfoData().tripDate.strip() != ''):
+                    headerTitle = headerTitle + ' on ' + self.spmInfoFrame.getSpmInfoData().tripDate
+
+            headerStyle = pd.PdfStyle(font='helvetica', fontStyle='B', fontSize=15, align='C',textColor=(220, 50, 50), fillColor=(230, 230, 0), drawColor=(0,80,180),border=True,height=9)
+            customPdf = pd.CustomPDF(headerImage=(str(os.getcwd()) + '\\railwaylogo.ico').replace('\\', '/'), headerTitle=headerTitle, headerStyle=headerStyle)
+
+            customPdf.add_customPage(pg.generateSpmSummaryReport(self.spmInfoFrame.getSpmInfoData(), self.spmInputFrame.getSpmInputData()))
+
+            if(self.date_time_vals != None and len(self.date_time_vals) > 0):
+                #Add Summary Analysis Summary Report Page
+                toShowBft = True if self.showBft_btn.cget('state') == tk.NORMAL and self.showBft.get() == 1 else False
+                toShowBpt = True if self.showBpt_btn.cget('state') == tk.NORMAL and self.showBpt.get() == 1 else False
+                customPdf.add_customPage(pg.generateAnalysisSummaryReport(spmInfoData=self.spmInfoFrame.getSpmInfoData(), date_time_vals=self.date_time_vals, speed_vals=self.speed_vals, inst_dist_vals=self.inst_dist_vals, cum_dist_vals=self.cum_dist_vals, bftBptList=[self.bft_start_index, self.bft_end_index, self.bpt_start_index, self.bpt_end_index], zeroClusters=self.zeroClusters, current_vals=self.current_vals, voltage_vals=self.voltage_vals, haltEnergy_vals=self.haltEnergy_vals, runEnergy_vals=self.runEnergy_vals, totalEnergy_vals=self.totalEnergy_vals, toShowBft=toShowBft, toShowBpt=toShowBpt, showOverControl=self.overControl_var.get(), showSpeedCompile=self.speedCompile_var.get()))
+                
+                #Add Speed Groups Report Page
+                customPdf.add_customPage(pg.generateSpeedGroupsReport(self.spmInfoFrame.getSpmInfoData(), date_time_vals=self.date_time_vals, speed_vals=self.speed_vals, inst_dist_vals=self.inst_dist_vals, cum_dist_vals=self.cum_dist_vals))
+
+                #Add Stoppage Distance Report
+                customPdf.add_customPage(pg.generateStoppageDistanceReport(self.zeroClusters, self.date_time_vals, self.speed_vals, self.cum_dist_vals, spmInfoData=self.spmInfoFrame.getSpmInfoData(), showOverControl=self.overControl_var.get(), showSpeedCompile=self.speedCompile_var.get()))
+                
+                #Add Stoppage Item Report
+                if(self.itemRecords != None and len(self.itemRecords) != 0):
+                    customPdf.add_customPage(pg.generateStoppageItemReport(self.zeroClusters, self.itemRecords, self.date_time_vals, self.speed_vals, self.cum_dist_vals, spmInfoData = self.spmInfoFrame.getSpmInfoData()))
+
+                #Add SR Records Page
+                if(self.srRecords != None and len(self.srRecords) > 0):
+                    customPdf.add_customPage(pg.generateSrReport(self.spmInfoFrame.getSpmInfoData(), self.srRecords, speed_vals=self.speed_vals, cum_dist_vals=self.cum_dist_vals, inst_dist_vals=self.inst_dist_vals, date_time_vals=self.date_time_vals))
+                
+                #Add Station to station running report
+                if(self.itemRecords != None and len(self.itemRecords) > 0):
+                    customPdf.add_customPage(pg.generateStationToStationReport(self.itemRecords, self.date_time_vals, self.cum_dist_vals, self.speed_vals))
+                
+            customPdf.process_pages()
+
+            #Add Plots
+            saveDir = os.path.join(os.getcwd(), 'Plots')
+            customPdf.includeHeader = False
+            customPdf.add_page(orientation='L',)
+            speed_time_report_plot = self.plot_speed_time(save=True, directory=saveDir, report=True)
+            customPdf.image(speed_time_report_plot, x=10, y=10, h=190, w=270)
+            customPdf.add_page(orientation='L',)
+            speed_distance_report_plot = self.plot_dist_speed(save=True, directory=saveDir, report=True)
+            customPdf.image(speed_distance_report_plot, x=10, y=10, h=190, w=270)
+            customPdf.output(filename)
+            print('Quick analysis report generated in ' + filename)
             
             #Cleanup the directory
             os.remove(speed_time_report_plot)
