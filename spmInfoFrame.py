@@ -53,7 +53,7 @@ class SpmInfoFrame(tk.LabelFrame):
         self.directionMenu = tk.OptionMenu(self, self.directionOption, *('UP', 'DOWN'))
         self.directionMenu.grid(row=row, column=column+1,  sticky='nwe', padx=7, pady=7)
 
-        self.initValues_test_wdsc()
+        #self.initValues_test_wdsc()
 
     def initValues_test(self):
         self.entriesMap.get('LP Name').insert(0, 'MUTHYAM POCHAIAH')
