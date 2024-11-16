@@ -503,7 +503,7 @@ class App(tk.Tk):
                     cumDistIndex -= 1
             if(len(plot_x_vals) > 0):
                 xticks1 = np.arange(0, plot_x_vals[-1], -100)
-                xticks1 = np.append(xticks1, plot_x_vals[-1])   
+                xticks1 = np.append(xticks1, plot_x_vals[-1])
             else:
                 xticks1 = np.arange(0, -100)
                 
@@ -753,7 +753,7 @@ class App(tk.Tk):
         fig, self.speedaxis = plt.subplots()
 
         color = 'tab:green'        
-        self.speedaxis.set_xlabel('Time')
+        self.speedaxis.set_xlabel('Time/Distance')
         self.speedaxis.set_ylabel('Speed (kmph)', color=color)                
         
         plot_x_vals = np.arange(0, len(self.date_time_vals))
@@ -761,12 +761,12 @@ class App(tk.Tk):
 
         self.speedaxis.plot(plot_x_vals, plot_y_vals, color=color)
     
-        self.speedaxis.set_title('Speed vs Time Plot')
+        self.speedaxis.set_title('Speed vs Time/Distance Plot')
         total_points = len(self.date_time_vals)
         skip_ticks = int(total_points/50)
 
         xticks = np.arange(0, plot_x_vals[-1], skip_ticks)
-        xlabels = [self.date_time_vals[index].strftime('%H:%M:%S') for index in xticks]
+        xlabels = [self.date_time_vals[index].strftime('%H:%M:%S') + '  (' + str(round(self.cum_dist_vals[index])) + ')' for index in xticks]
         self.speedaxis.set_xticks(xticks, labels=xlabels, rotation=90)
 
         if(self.showGrid_btn.cget('state') == tk.NORMAL and self.showGrid.get() == 1):
@@ -1580,7 +1580,7 @@ class App(tk.Tk):
                 customPdf.add_customPage(pg.generateAnalysisSummaryReport(spmInfoData=self.spmInfoFrame.getSpmInfoData(), date_time_vals=self.date_time_vals, speed_vals=self.speed_vals, inst_dist_vals=self.inst_dist_vals, cum_dist_vals=self.cum_dist_vals, bftBptList=[self.bft_start_index, self.bft_end_index, self.bpt_start_index, self.bpt_end_index], zeroClusters=self.zeroClusters, current_vals=self.current_vals, voltage_vals=self.voltage_vals, haltEnergy_vals=self.haltEnergy_vals, runEnergy_vals=self.runEnergy_vals, totalEnergy_vals=self.totalEnergy_vals, toShowBft=toShowBft, toShowBpt=toShowBpt, showOverControl=self.overControl_var.get(), showSpeedCompile=self.speedCompile_var.get()))
                 
                 #Add Speed Groups Report Page
-                customPdf.add_customPage(pg.generateSpeedGroupsReport(self.spmInfoFrame.getSpmInfoData(), date_time_vals=self.date_time_vals, speed_vals=self.speed_vals, inst_dist_vals=self.inst_dist_vals, cum_dist_vals=self.cum_dist_vals))
+                #customPdf.add_customPage(pg.generateSpeedGroupsReport(self.spmInfoFrame.getSpmInfoData(), date_time_vals=self.date_time_vals, speed_vals=self.speed_vals, inst_dist_vals=self.inst_dist_vals, cum_dist_vals=self.cum_dist_vals))
 
                 #Add Stoppage Distance Report
                 customPdf.add_customPage(pg.generateStoppageDistanceReport(self.zeroClusters, self.date_time_vals, self.speed_vals, self.cum_dist_vals, spmInfoData=self.spmInfoFrame.getSpmInfoData(), showOverControl=self.overControl_var.get(), showSpeedCompile=self.speedCompile_var.get()))
@@ -1594,8 +1594,8 @@ class App(tk.Tk):
                     customPdf.add_customPage(pg.generateSrReport(self.spmInfoFrame.getSpmInfoData(), self.srRecords, speed_vals=self.speed_vals, cum_dist_vals=self.cum_dist_vals, inst_dist_vals=self.inst_dist_vals, date_time_vals=self.date_time_vals))
                 
                 #Add Station to station running report
-                if(self.itemRecords != None and len(self.itemRecords) > 0):
-                    customPdf.add_customPage(pg.generateStationToStationReport(self.itemRecords, self.date_time_vals, self.cum_dist_vals, self.speed_vals))
+                #if(self.itemRecords != None and len(self.itemRecords) > 0):
+                #    customPdf.add_customPage(pg.generateStationToStationReport(self.itemRecords, self.date_time_vals, self.cum_dist_vals, self.speed_vals))
                 
             customPdf.process_pages()
 

@@ -35,7 +35,7 @@ class SpmInputFrame(tk.LabelFrame):
         #Construct SPM Type Buttons
         
         self.spmTypeVar.set('Laxven')
-        #self.initValues_test_wdsc()
+        self.initValues_gzb_derail()
         
         self.spmTypeButtons = [self.create_radio(c) for c in SpmInputData.SPM_TYPES.keys()]
         i,j=(1,0)
@@ -95,6 +95,14 @@ class SpmInputFrame(tk.LabelFrame):
         self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Trial WD-SNF/DN WD-SC SR File.csv')
         self.spmAnalysisFrom.set('05-10-24 01:05:38')
         self.spmAnalysisTo.set('05-10-24 03:37:46')
+
+    def initValues_gzb_derail(self):
+        self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/GZB_SPM_Laxven.xls')
+        self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/Mapping_KZJ_BPQ.xls')
+        self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/Gradient_KZJ_BPQ_UP.xls')
+        self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/SR_File.xls')
+        self.spmAnalysisFrom.set('12-11-24 20:10:35')
+        self.spmAnalysisTo.set('12-11-24 20:33:32')
 
     def getSpmInputData(self):
         return self.spmInputData

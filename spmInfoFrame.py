@@ -30,7 +30,7 @@ class SpmInfoFrame(tk.LabelFrame):
         tk.Label(self, text='Goods/Coaching').grid(row=row, column=column, sticky='w', padx=7, pady=7)
         column += 1
         self.serviceOption = tk.StringVar()
-        self.serviceOption.set('COACHING')
+        self.serviceOption.set('GOODS')
         self.serviceMenu = tk.OptionMenu(self, self.serviceOption, *('GOODS', 'COACHING'))
         self.serviceMenu.grid(row=row, column=column,  sticky='nwe', padx=7, pady=7)
         column += 1
@@ -49,11 +49,11 @@ class SpmInfoFrame(tk.LabelFrame):
         row = row + 1 if column == 0 else row
         tk.Label(self, text='Direction \nDecreasing Km:UP\nIncreasing Km:DOWN').grid(row=row, column=column, sticky='w', padx=7, pady=7)
         self.directionOption = tk.StringVar()
-        self.directionOption.set('DOWN')
+        self.directionOption.set('UP')
         self.directionMenu = tk.OptionMenu(self, self.directionOption, *('UP', 'DOWN'))
         self.directionMenu.grid(row=row, column=column+1,  sticky='nwe', padx=7, pady=7)
 
-        #self.initValues_test_wdsc()
+        self.initValues_gzb_derail()
 
     def initValues_test(self):
         self.entriesMap.get('LP Name').insert(0, 'MUTHYAM POCHAIAH')
@@ -158,6 +158,41 @@ class SpmInfoFrame(tk.LabelFrame):
         #self.entriesMap.get('MPS Range To (kmph)').insert(0, '110')
         #self.entriesMap.get('Attacking Speed (kmph)').insert(0, '60')
         self.entriesMap.get('SPM GPS Time Difference\n+/-hh:mm:ss').insert(0, '+00:00:00')
+        self.entriesMap.get('Remarks').insert(0, 'NO REMARKS')
+
+    def initValues_gzb_derail(self):
+        self.entriesMap.get('LP Name').insert(0, 'SHRAWAN KUMAR II')
+        self.entriesMap.get('LP Designation').insert(0, 'LPG')
+        self.entriesMap.get('LP HQ').insert(0, 'RDM')
+        self.entriesMap.get('LP PF No').insert(0, '242IE133552')
+        self.entriesMap.get('LP CMS ID').insert(0, 'RDM1616')
+        self.entriesMap.get('ALP Name').insert(0, 'KAMESHWAR PRASAD')
+        self.entriesMap.get('ALP HQ').insert(0, 'RDM')
+        self.entriesMap.get('Coach/Wagon Type').insert(0, 'BOSTHS+BRN')
+        self.entriesMap.get('ALP CMS ID').insert(0, 'RDM1399')
+        self.entriesMap.get('LP CLI').insert(0, 'P.SRINIVASULU')
+        self.entriesMap.get('SPM Analysis By').insert(0, 'SC UNIVERSAL SPM APP')
+        # self.entriesMap.get('CLI PF No').insert(0, '24202253306')
+        self.entriesMap.get('From Stn').insert(0, 'PDPL')
+        self.entriesMap.get('Start Loc (km)').insert(0, '293/22')
+        self.entriesMap.get('To Stn').insert(0, 'RGPM')
+        self.entriesMap.get('End Loc (km)').insert(0, '282/15')
+        self.entriesMap.get('Section').insert(0, 'PDPL-RDM')
+        self.entriesMap.get('Train').insert(0, 'GZB')
+        self.entriesMap.get('Train Length (m)').insert(0, '640')
+        self.entriesMap.get('No of Coaches/Wagons').insert(0, '44')
+        self.entriesMap.get('Total Load (incl Loco) (T)').insert(0, '3680')
+        self.entriesMap.get('Loco No').insert(0, '31434')
+        self.entriesMap.get('Loco Type').insert(0, 'WAG9')
+        self.entriesMap.get('Loco Base').insert(0, 'GMO')
+        self.entriesMap.get('Loco Due Date').insert(0, '01-01-25')
+        self.entriesMap.get('Schedule Due').insert(0, 'IA')
+        self.entriesMap.get('Trip Date').insert(0, '12-11-24')
+        self.entriesMap.get('MPS (kmph)').insert(0, '60')
+        #self.entriesMap.get('MPS Range From (kmph)').insert(0, '100')
+        #self.entriesMap.get('MPS Range To (kmph)').insert(0, '110')
+        #self.entriesMap.get('Attacking Speed (kmph)').insert(0, '60')
+        self.entriesMap.get('SPM GPS Time Difference\n+/-hh:mm:ss').insert(0, '+12:11:24')
         self.entriesMap.get('Remarks').insert(0, 'NO REMARKS')
 
     def initValues_test_prlivkb(self):
