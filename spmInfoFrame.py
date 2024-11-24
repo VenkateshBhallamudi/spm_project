@@ -174,7 +174,8 @@ class SpmInfoFrame(tk.LabelFrame):
         self.entriesMap.get('SPM Analysis By').insert(0, 'SC UNIVERSAL SPM APP')
         # self.entriesMap.get('CLI PF No').insert(0, '24202253306')
         self.entriesMap.get('From Stn').insert(0, 'PDPL')
-        self.entriesMap.get('Start Loc (km)').insert(0, '293/22')
+        # self.entriesMap.get('Start Loc (km)').insert(0, '293/22')
+        self.entriesMap.get('Start Loc (km)').insert(0, '289/32')
         self.entriesMap.get('To Stn').insert(0, 'RGPM')
         self.entriesMap.get('End Loc (km)').insert(0, '282/15')
         self.entriesMap.get('Section').insert(0, 'PDPL-RDM')
@@ -192,7 +193,8 @@ class SpmInfoFrame(tk.LabelFrame):
         #self.entriesMap.get('MPS Range From (kmph)').insert(0, '100')
         #self.entriesMap.get('MPS Range To (kmph)').insert(0, '110')
         #self.entriesMap.get('Attacking Speed (kmph)').insert(0, '60')
-        self.entriesMap.get('SPM GPS Time Difference\n+/-hh:mm:ss').insert(0, '+12:11:24')
+        #self.entriesMap.get('SPM GPS Time Difference\n+/-hh:mm:ss').insert(0, '+12:11:24')
+        #self.entriesMap.get('SPM GPS Time Difference\n+/-hh:mm:ss').insert(0, '+12:22:12')
         self.entriesMap.get('Remarks').insert(0, 'NO REMARKS')
 
     def initValues_test_prlivkb(self):

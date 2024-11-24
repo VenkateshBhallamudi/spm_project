@@ -101,8 +101,14 @@ class SpmInputFrame(tk.LabelFrame):
         self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/Mapping_KZJ_BPQ.xls')
         self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/Gradient_KZJ_BPQ_UP.xls')
         self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/SR_File.xls')
-        self.spmAnalysisFrom.set('12-11-24 20:10:35')
-        self.spmAnalysisTo.set('12-11-24 20:33:32')
+
+        # self.spmFileLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/GZB_SPM_Laxven.xls')
+        # self.spmMapLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/Mapping_KZJ_BPQ.xls')
+        # self.spmGradientLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/Gradient_KZJ_BPQ_UP.xls')
+        # self.spmSrLocVar.set('C:/Users/bvenk/OneDrive/Desktop/Work/SPM App/Derailment/SR_File.xls')
+
+        self.spmAnalysisFrom.set('12-11-24 08:11:59')
+        self.spmAnalysisTo.set('12-11-24 08:22:08')
 
     def getSpmInputData(self):
         return self.spmInputData
