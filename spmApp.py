@@ -1666,8 +1666,8 @@ Leadership and Inspiration:
 Shri P.D.Mishra Ex. PCEE/SCR
 Shri B.M.Meena PCEE/SCR
 Shri Bhartesh Kumar Jain DRM/SC
-Shri P.B.S Rathore CELE/SCR
 Shri Vishnu Kant CEE/Plg & Op/SCR
+Shri P.B.S Rathore CELE/SCR
 Shri Rajeev Gangele Ex. ADRM/O/SC
 Shri M.Gopal ADRM/I/SC
 Shri R.Gopalkrishnan ADRM/O/SC
