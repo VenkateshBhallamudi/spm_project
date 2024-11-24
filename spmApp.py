@@ -1663,11 +1663,14 @@ B.Venkatesh DEE/OP/SC
 Acknowledgements:
 
 Leadership and Inspiration:
-Shri P.D.Mishra PCEE/SCR
+Shri P.D.Mishra Ex. PCEE/SCR
+Shri B.M.Meena PCEE/SCR
 Shri Bhartesh Kumar Jain DRM/SC
+Shri P.B.S Rathore CELE/SCR
 Shri Vishnu Kant CEE/Plg & Op/SCR
-Shri Rajeev Gangele ADRM/O/SC
+Shri Rajeev Gangele Ex. ADRM/O/SC
 Shri M.Gopal ADRM/I/SC
+Shri R.Gopalkrishnan ADRM/O/SC
 
 Guidance and Support:
 Shri Kosuru Chaitanya Sr.DEE/TRSO/SC
@@ -1676,6 +1679,7 @@ Shri M.Sambasiva Rao ADEE/TRSO/SC
 Testing and Feedback:
 Shri R.Ramakrisha CLI/SNF
 Shri S.Nagaraju Sr.ALP/SNF
+Shri Durgaprasad Naik Sr.ALP/SNF
 Shri B.Santosh Kumar Sr.ALP/KZJ
 
         '''

@@ -204,12 +204,12 @@ def generateAnalysisSummaryRecords(summaryPage, spmInfoData, date_time_vals, spe
         
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT start time', bft_start_time, bftRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT end time', bft_end_time, bftRecordStyle))
-        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT duration', bft_duration, bftRecordStyle))
+        #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT duration', bft_duration, bftRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT start speed (kmph)', bft_start_speed, bftRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT end speed (kmph)', bft_end_speed, bftRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT speed reduction %', bft_speed_reduction, bftRecordStyle))
-        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT start distance (m)', bft_start_distance, bftRecordStyle))
-        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT end distance (m)', bft_end_distance, bftRecordStyle))
+        #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT start distance (m)', bft_start_distance, bftRecordStyle))
+        #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT end distance (m)', bft_end_distance, bftRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BFT Proper/Improper', bftProperImproper, bftRecordStyle))
 
     if(toShowBpt):
@@ -243,12 +243,12 @@ def generateAnalysisSummaryRecords(summaryPage, spmInfoData, date_time_vals, spe
 
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT start time', bpt_start_time, bptRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT end time', bpt_end_time, bptRecordStyle))
-        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT duration', bpt_duration, bptRecordStyle))
+        #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT duration', bpt_duration, bptRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT start speed (kmph)', bpt_start_speed, bptRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT end speed (kmph)', bpt_end_speed, bptRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT speed reduction %', bpt_speed_reduction, bptRecordStyle))
-        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT start distance (m)', bpt_start_distance, bptRecordStyle))
-        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT end distance (m)', bpt_end_distance, bptRecordStyle))
+        #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT start distance (m)', bpt_start_distance, bptRecordStyle))
+        #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT end distance (m)', bpt_end_distance, bptRecordStyle))
         summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('BPT Proper/Improper', bptProperImproper, bptRecordStyle))
     
     lateControlling = sa.late_controlling(zeroClusters=zeroClusters,speed_vals=speed_vals, cum_dist_vals=cum_dist_vals, service=service)
@@ -284,9 +284,9 @@ def generateAnalysisSummaryRecords(summaryPage, spmInfoData, date_time_vals, spe
         maxCurrent = sa.max_current(current_vals)
         minCurrent = sa.min_current(current_vals)
     
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Average Current (A)', averageCurrent, recordStyle))
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Max Current (A)', maxCurrent, recordStyle))
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Min Current (A)', minCurrent, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Average Current (A)', averageCurrent, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Max Current (A)', maxCurrent, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Min Current (A)', minCurrent, recordStyle))
 
     isVoltagePresent = sa.isVoltagePresent(voltage_vals)
     averageVoltage = 'NA'
@@ -298,21 +298,21 @@ def generateAnalysisSummaryRecords(summaryPage, spmInfoData, date_time_vals, spe
         maxVoltage = sa.max_voltage(voltage_vals)
         minVoltage = sa.min_voltage(voltage_vals)
 
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Average Voltage (kV)', averageVoltage, recordStyle))
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Max Voltage (kV)', maxVoltage, recordStyle))
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Min Voltage (kV)', minVoltage, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Average Voltage (kV)', averageVoltage, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Max Voltage (kV)', maxVoltage, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Min Voltage (kV)', minVoltage, recordStyle))
 
     haltEnergy, isHaltEnergyPresent = sa.cum_halt_energy(haltEnergy_vals)
     haltEnergy_str = str(round(haltEnergy, 2)) if isHaltEnergyPresent else 'NA'
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Halt Energy (kWh)', haltEnergy_str, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Halt Energy (kWh)', haltEnergy_str, recordStyle))
 
     runEnergy, isRunEnergyPresent = sa.cum_run_energy(runEnergy_vals)
     runEnergy_str = str(round(runEnergy, 2)) if isRunEnergyPresent else 'NA'
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Run Energy (kWh)', runEnergy_str, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Run Energy (kWh)', runEnergy_str, recordStyle))
 
     total_energy, isTotalEnergyPresent = sa.cum_total_energy(totalEnergy_vals)
     total_energy_str = str(round(total_energy, 2)) if isTotalEnergyPresent else 'NA'
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Total Energy (kWh)', total_energy_str, recordStyle))
+    #summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Total Energy (kWh)', total_energy_str, recordStyle))
 
     sec = 'NA'
     if(isTotalEnergyPresent):
@@ -320,7 +320,8 @@ def generateAnalysisSummaryRecords(summaryPage, spmInfoData, date_time_vals, spe
         load_str = spmInfoData.load
         sec = sa.calculate_sec(total_energy, load_str, cum_distance_km)
 
-    summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Specific Energy Consumption (SEC)', sec, recordStyle))
+    if(sec != 'NA'):
+        summaryPage.add_pdfSummaryRecord(summaryRecord=generateSpmInfoSummaryRecord('Specific Energy Consumption (SEC)', sec, recordStyle))
 
 def generateSrReport(spmInfoData, srRecords, speed_vals=[], cum_dist_vals=[], inst_dist_vals=[], date_time_vals=[]):
     headingStyle = pd.PdfStyle(font='helvetica', fontStyle='B', fontSize=12, align='L',textColor=(0,0,0), fillColor=(200,220,255), drawColor=(0,80,180),border=False,height=6)
